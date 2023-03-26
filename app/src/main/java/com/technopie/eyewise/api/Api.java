@@ -23,7 +23,7 @@ public interface Api {
     @FormUrlEncoded
     @POST("userlogin")
     Call<UserResponse> userLogin(
-            @Field("email") String username,
+            @Field("email") String email,
             @Field("password") String password
     );
 }

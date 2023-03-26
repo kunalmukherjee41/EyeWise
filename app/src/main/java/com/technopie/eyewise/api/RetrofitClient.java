@@ -7,7 +7,7 @@ public class RetrofitClient {
 
     private static final String BASE_URL = "https://technopie.in/rest_api/EyeWise/public/";
     private static RetrofitClient mInstance;
-    private final Retrofit retrofit;
+    private Retrofit retrofit;
 
     private RetrofitClient() {
         retrofit = new Retrofit.Builder()

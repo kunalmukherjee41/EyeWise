@@ -1,5 +1,6 @@
 package com.technopie.eyewise.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
@@ -33,7 +34,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private EditText email, password;
     private Button login;
-    private String userID;
     private ProgressDialog progressBar;
 
     @Override
@@ -48,9 +48,9 @@ public class LoginActivity extends AppCompatActivity {
         TextView forgot_password = findViewById(R.id.forgot_password);
 
         //goto create activity
-//        create_account.setOnClickListener(
-//                v -> startActivity(new Intent(LoginActivity.this, CreateUserActivity.class))
-//        );
+        create_account.setOnClickListener(
+                v -> startActivity(new Intent(LoginActivity.this, CreateUserActivity.class))
+        );
 
         //check email password and goto home activity
         login.setOnClickListener(
@@ -89,51 +89,43 @@ public class LoginActivity extends AppCompatActivity {
         progressBar.setContentView(R.layout.progress_dialog);
         Objects.requireNonNull(progressBar.getWindow()).setBackgroundDrawableResource(android.R.color.transparent);
 
-        String txt_username = email.getText().toString().trim();
+        String txt_email = email.getText().toString().trim();
         String txt_password = password.getText().toString().trim();
-        if (TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_username)) {
+        if (TextUtils.isEmpty(txt_password) || TextUtils.isEmpty(txt_email)) {
             Toast.makeText(LoginActivity.this, "Fill Both Requirements", Toast.LENGTH_LONG).show();
             login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_bg, null));
             progressBar.dismiss();
-
-//        } else if (!Patterns.EMAIL_ADDRESS.matcher(txt_username).matches()) {
-//            Toast.makeText(LoginActivity.this, "Provided a valid Email Address", Toast.LENGTH_LONG).show();
-//            login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.custom_btn, null));
-//            progressBar.dismiss();
 
         } else {
 
             Call<UserResponse> call = RetrofitClient
                     .getInstance()
                     .getApi()
-                    .userLogin(txt_username, txt_password);
+                    .userLogin(txt_email, txt_password);
 
             call.enqueue(new Callback<UserResponse>() {
-                             @Override
-                             public void onResponse(Call<UserResponse> call, Response<UserResponse> response) {
-                                 assert response.body() != null;
-                                 if (!response.body().getError()) {
-                                     assert response.body() != null;
-                                     Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
-                                     email.setText("");
-                                 } else {
-                                     progressBar.dismiss();
-                                     Toast.makeText(LoginActivity.this, "Password Is Invalid", Toast.LENGTH_LONG).show();
-                                 }
-                                 login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_bg, null));
-                                 password.setText("");
-                             }
+                 @Override
+                 public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
+                     assert response.body() != null;
+                     if (!response.body().getError()) {
+                         Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+                         email.setText("");
+                     } else {
+                         Toast.makeText(LoginActivity.this, "Password Is Invalid", Toast.LENGTH_LONG).show();
+                     }
+                     login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_bg, null));
+                     password.setText("");
+                     progressBar.dismiss();
+                 }
 
-                             @Override
-                             public void onFailure(Call<UserResponse> call, Throwable t) {
-                                 Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                                 password.setText("");
-                                 progressBar.dismiss();
-                                 login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_bg, null));
-                             }
-                         }
-            );
-
+                 @Override
+                 public void onFailure(@NonNull Call<UserResponse> call, @NonNull Throwable t) {
+                     Toast.makeText(LoginActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                     password.setText("");
+                     progressBar.dismiss();
+                     login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_bg, null));
+                 }
+             });
         }
     }
 

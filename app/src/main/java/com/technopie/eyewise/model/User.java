@@ -21,6 +21,10 @@ public class User {
     @Expose
     private String email;
 
+    @SerializedName("password")
+    @Expose
+    private String password;
+
     @SerializedName("dob")
     @Expose
     private String dob;
@@ -29,11 +33,12 @@ public class User {
     @Expose
     private String pinCode;
 
-    public User(int id, String name, String phoneNo, String email, String dob, String pinCode) {
+    public User(int id, String name, String phoneNo, String email, String password, String dob, String pinCode) {
         this.id = id;
         this.name = name;
         this.phoneNo = phoneNo;
         this.email = email;
+        this.password = password;
         this.dob = dob;
         this.pinCode = pinCode;
     }
@@ -68,6 +73,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDob() {

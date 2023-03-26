@@ -8,6 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#550BFB</color>
+    <color name="colorAccent">#03DAC5</color>
+    <color name="mainColor">#4960E0</color>
+    <color name="secondColor">#5C82EA</color>
     <color name="btn">#C2DFF2</color>
     <color name="loginColor">#3B61FA</color>
     <color name="placeholder_bg">#E6323131</color>
