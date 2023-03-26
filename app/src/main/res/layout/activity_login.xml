@@ -75,7 +75,7 @@
             android:layout_marginTop="116dp"
             android:elevation="1dp"
             android:fontFamily="@font/googlesansmedium"
-            android:text="@string/already_have_an_account"
+            android:text="@string/login"
             android:textColor="@android:color/white"
             android:textSize="30sp"
             android:textStyle="bold"

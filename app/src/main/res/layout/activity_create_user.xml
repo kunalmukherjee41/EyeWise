@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!--        <include-->
-        <!--            android:id="@+id/toolbar"-->
-        <!--            layout="@layout/bar_layout" />-->
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/bar_layout" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -91,7 +91,7 @@
                         android:background="@drawable/custom_edittext"
                         android:drawableStart="@drawable/username_asset"
                         android:fontFamily="@font/googlesansregular"
-                        android:hint="@string/username"
+                        android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:padding="10dp" />
 
@@ -181,7 +181,7 @@
                         android:textSize="18sp" />
 
                     <EditText
-                        android:id="@+id/phone"
+                        android:id="@+id/phone_no"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="410dp"
@@ -193,11 +193,57 @@
                         android:inputType="phone"
                         android:padding="10dp" />
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tag"
+                        android:layout_marginTop="435dp"
+                        android:fontFamily="@font/googlesansmedium"
+                        android:text="@string/dob"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/dob"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="490dp"
+                        android:autofillHints=""
+                        android:background="@drawable/custom_edittext"
+                        android:drawableStart="@drawable/dob_assest"
+                        android:fontFamily="@font/googlesansregular"
+                        android:hint="@string/dob"
+                        android:inputType="date"
+                        android:padding="10dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tag"
+                        android:layout_marginTop="510dp"
+                        android:fontFamily="@font/googlesansmedium"
+                        android:text="@string/pin_code"
+                        android:textColor="#000"
+                        android:textSize="18sp" />
+
+                    <EditText
+                        android:id="@+id/pin_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="565dp"
+                        android:autofillHints=""
+                        android:background="@drawable/custom_edittext"
+                        android:drawableStart="@drawable/pin_code_assest"
+                        android:fontFamily="@font/googlesansregular"
+                        android:hint="@string/pin_code"
+                        android:inputType="phone"
+                        android:padding="10dp" />
+
                     <Button
                         android:id="@+id/create_user"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="465dp"
+                        android:layout_marginTop="675dp"
                         android:background="@drawable/custom_btn"
                         android:fontFamily="@font/googlesansmedium"
                         android:text="@string/create_new_account"
@@ -211,7 +257,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="550dp"
+                    android:layout_marginTop="640dp"
                     android:background="#c1cccccc"
                     android:orientation="horizontal"
                     android:padding="13dp">
