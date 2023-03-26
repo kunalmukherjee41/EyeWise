@@ -30,6 +30,7 @@
     <string name="sample_question">Q. This is a Sample Question</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="edit">Edit</string>
 
 
 </resources>

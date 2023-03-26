@@ -1,5 +1,7 @@
 package com.technopie.eyewise.api;
 
+import com.technopie.eyewise.model.AnswerResponse;
+import com.technopie.eyewise.model.AnswerResponse1;
 import com.technopie.eyewise.model.QuestionsResponse;
 import com.technopie.eyewise.model.UserResponse;
 
@@ -9,6 +11,8 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface Api {
     @FormUrlEncoded
@@ -39,4 +43,11 @@ public interface Api {
             @Field("refquestion_id")int refQuestionId,
             @Field("answer")String answer
     );
+
+    @PUT("getanswersbyuserid/{refuser_id}")
+    Call<AnswerResponse> getAnswersByUserId(@Path("refuser_id") int refUserId);
+
+    @PUT("isanswered/{refuser_id}")
+    Call<AnswerResponse1> isAnswered(@Path("refuser_id") int refUserId);
+
 }

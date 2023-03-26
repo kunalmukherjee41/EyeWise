@@ -81,13 +81,17 @@ public class QuestionsActivity extends AppCompatActivity {
         questionId.setText("Q. ".concat(question.getQuestion()));
         Glide.with(this).load("https://technopie.in/rest_api/images/" + question.getImageName()).into(questionsImage);
         submit.setOnClickListener(v -> {
-            saveAnswer(question.getQuestionnaireId());
-            radioGroup.clearCheck();
-            if (questions.size() > i) {
-                setQuestion();
+            if (answer != null) {
+                saveAnswer(question.getQuestionnaireId());
+                radioGroup.clearCheck();
+                if (questions.size() > i) {
+                    setQuestion();
+                } else {
+                    Toast.makeText(this, "All Question Are Answered", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(this, MainActivity.class));
+                }
             } else {
-                Toast.makeText(this, "All Question Are Answered", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(this, MainActivity.class));
+                Toast.makeText(this, "Please fill the answer", Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -103,6 +107,7 @@ public class QuestionsActivity extends AppCompatActivity {
             @Override
             public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                 assert response.body() != null;
+                answer = null;
             }
 
             @Override
