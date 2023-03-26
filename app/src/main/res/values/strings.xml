@@ -27,6 +27,9 @@
     <string name="phone_number">Phone Number</string>
     <string name="pin_code">Pin Code</string>
     <string name="login_page">Login Page</string>
+    <string name="sample_question">Q. This is a Sample Question</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 
 </resources>

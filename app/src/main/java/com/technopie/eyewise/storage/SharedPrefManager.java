@@ -44,6 +44,11 @@ public class SharedPrefManager {
         return sharedPreferences.getInt("user_id", -1) != -1;
     }
 
+    public int getUserId(){
+        SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
+        return sharedPreferences.getInt("user_id", -1);
+    }
+
     public User getUser() {
 
         SharedPreferences sharedPreferences = mCtx.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE);
