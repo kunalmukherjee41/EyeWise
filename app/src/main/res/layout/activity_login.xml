@@ -33,7 +33,7 @@
             android:elevation="1dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/logo_white_bg" />
+            app:srcCompat="@drawable/logo" />
 
         <View
             android:id="@+id/topView"
