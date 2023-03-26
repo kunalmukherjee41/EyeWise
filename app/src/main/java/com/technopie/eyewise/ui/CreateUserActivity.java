@@ -1,5 +1,6 @@
 package com.technopie.eyewise.ui;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.content.res.ResourcesCompat;
@@ -123,8 +124,6 @@ public class CreateUserActivity extends AppCompatActivity {
             progressBar.dismiss();
 
         } else {
-            SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
-            String dateTime = sdf1.format(new Date());
             Call<ResponseBody> call = RetrofitClient
                     .getInstance()
                     .getApi()
@@ -132,7 +131,7 @@ public class CreateUserActivity extends AppCompatActivity {
 
             call.enqueue(new Callback<ResponseBody>() {
                 @Override
-                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                public void onResponse(@NonNull Call<ResponseBody> call, @NonNull Response<ResponseBody> response) {
                     if (response.isSuccessful()) {
                         progressBar.dismiss();
                         Toast.makeText(CreateUserActivity.this, "User Created!", Toast.LENGTH_LONG).show();

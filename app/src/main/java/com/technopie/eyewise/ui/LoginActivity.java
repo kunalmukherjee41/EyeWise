@@ -20,10 +20,8 @@ import android.widget.Toast;
 import com.technopie.eyewise.R;
 import com.technopie.eyewise.api.RetrofitClient;
 import com.technopie.eyewise.model.UserResponse;
+import com.technopie.eyewise.storage.SharedPrefManager;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -96,9 +94,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(LoginActivity.this, "Fill Both Requirements", Toast.LENGTH_LONG).show();
             login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_bg, null));
             progressBar.dismiss();
-
         } else {
-
             Call<UserResponse> call = RetrofitClient
                     .getInstance()
                     .getApi()
@@ -109,14 +105,17 @@ public class LoginActivity extends AppCompatActivity {
                  public void onResponse(@NonNull Call<UserResponse> call, @NonNull Response<UserResponse> response) {
                      assert response.body() != null;
                      if (!response.body().getError()) {
+                         SharedPrefManager.getInstance(LoginActivity.this).saveUser(response.body().getUser());
                          Toast.makeText(LoginActivity.this, "Logged In", Toast.LENGTH_SHORT).show();
+                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                          email.setText("");
+                         progressBar.dismiss();
                      } else {
+                         progressBar.dismiss();
                          Toast.makeText(LoginActivity.this, "Password Is Invalid", Toast.LENGTH_LONG).show();
                      }
                      login.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.round_bg, null));
                      password.setText("");
-                     progressBar.dismiss();
                  }
 
                  @Override
@@ -131,15 +130,15 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 //    //check user previously login or not
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
-//            Intent intent = new Intent(this, DisplayActivity.class);
-//            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//            startActivity(intent);
-//        }
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (SharedPrefManager.getInstance(this).isLoggedIn()) {
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
+    }
 
     @Override
     public void onBackPressed() {
