@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="btn">#C2DFF2</color>
+    <color name="loginColor">#3B61FA</color>
+    <color name="placeholder_bg">#E6323131</color>
+    <color name="toolbarColor">#039be5</color>
+    <color name="colorGradientStartColor">#4960E0</color>
+    <color name="colorGradientEndColor">#1577ca</color>
 </resources>
